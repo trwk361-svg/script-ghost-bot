@@ -1,7 +1,7 @@
 import telebot
 
-# ضع توكن البوت الخاص بك هنا بين العلامتين
-TOKEN = 'YOUR_BOT_TOKEN'
+# التوكن الخاص بك جاهز هنا
+TOKEN = '8917798144:AAG49jtagcX6f6_LDsLgMX5WDcEKS-DxfYg'
 bot = telebot.TeleBot(TOKEN)
 
 
@@ -38,4 +38,15 @@ def moderate_chat(message):
           ' ممنوع إرسال الروابط هنا! تم كتمك لمدة 20 دقيقة.',
       )
 
-      # حذف رسالة التح
+      # حذف رسالة التحذير تلقائياً بعد 10 ثوانٍ لعدم إزعاج المجموعة
+      import time
+
+      time.sleep(10)
+      bot.delete_message(message.chat.id, warning.message_id)
+
+  except Exception as e:
+    print(f'حدث خطأ: {e}')
+
+
+print('Bot is running...')
+bot.infinity_polling()
